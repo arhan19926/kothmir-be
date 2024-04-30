@@ -22,7 +22,7 @@ const bootstrap = async () => {
   await app
     .listen(PORT)
     .then(() =>
-      console.log(`The Nest.js backend service is up and running on ${PORT}`),
+      console.log(`The Nest.js Backend service is up and running on ${PORT}`),
     )
     .catch((err) => console.log(err));
 };
