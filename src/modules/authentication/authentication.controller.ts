@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service';
 import { ApiResponse } from '@app/utils/helpers/response-context.helper';
 import { STATUS_CODES } from '@app/utils/constants/status-codes.constant';
@@ -14,13 +14,13 @@ export class AuthenticationController {
   constructor(private readonly authenticationService: AuthenticationService) {}
 
   @Get('/')
-  googleLogin(@Res() res) {
+  googleLogin() {
     const redirectURI = process.env.CALLBACK_URL;
     const scope = 'openid email profile';
 
     const url = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code&scope=${scope}`;
 
-    return res.redirect(url);
+    return new ApiResponse(url, null, STATUS_CODES.OK);
   }
 
   @Get('/google/redirect')
@@ -32,6 +32,7 @@ export class AuthenticationController {
       });
 
       const idToken = tokens.id_token;
+
       const ticket = await client.verifyIdToken({
         idToken,
         audience: clientId,
