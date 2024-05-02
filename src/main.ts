@@ -11,11 +11,11 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, {
     logger: ['log', 'fatal', 'error', 'warn'],
   });
-  app.getHttpAdapter().getInstance().disable('x-powered-by');
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
 
   app.enableCors({
+    origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   });
