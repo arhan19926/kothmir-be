@@ -19,7 +19,7 @@ export class AuthenticationController {
     const scope = 'openid email profile';
 
     const url = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code&scope=${scope}`;
-
+    console.log(`url--->`, url);
     return new ApiResponse(url, null, STATUS_CODES.OK);
   }
 
