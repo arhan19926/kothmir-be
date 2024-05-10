@@ -54,6 +54,7 @@ export class AuthenticationController {
   @Get('/validateUser')
   async verifyToken(@Req() req: Request) {
     try {
+      console.log(req.cookies);
       const sessionToken = req.cookies['session'];
       const isValid =
         await this.authenticationService.processVerifyToken(sessionToken);
