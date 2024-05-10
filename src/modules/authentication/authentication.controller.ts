@@ -26,7 +26,6 @@ export class AuthenticationController {
       });
 
       const payload = ticket.getPayload();
-
       if (Object.entries(payload).length) {
         const oneHourFromNow = new Date();
         oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
@@ -40,6 +39,7 @@ export class AuthenticationController {
           httpOnly: process.env.ENV == 'dev' ? false : true,
           path: '/',
         });
+        console.log(`token created and set as cookie ---> token: ${jwtToken}`);
       }
       return new ApiResponse(
         { message: `Logged In Successfully` },
