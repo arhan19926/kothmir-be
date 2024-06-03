@@ -4,10 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { RecipesModule } from './modules/recipes/recipes.module';
 import { DatabaseModule } from './modules/database/database.module';
 
 @Module({
-  imports: [AuthenticationModule, DatabaseModule],
+  imports: [AuthenticationModule, RecipesModule, DatabaseModule],
   controllers: [AppController],
   providers: [
     AppService,
