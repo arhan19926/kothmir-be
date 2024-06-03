@@ -3,6 +3,10 @@ import { DatabaseService } from './database.service';
 import { DatabaseController } from './database.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { config } from 'dotenv';
+import {
+  Recipes,
+  RecipesSchema,
+} from '@app/src/modules/recipes/schema/recipe.schema';
 config();
 
 const URI = process.env.MONGO_URI;
@@ -23,6 +27,7 @@ const URI = process.env.MONGO_URI;
         return connection;
       },
     }),
+    MongooseModule.forFeature([{ name: Recipes.name, schema: RecipesSchema }]),
   ],
   controllers: [DatabaseController],
   providers: [DatabaseService],
