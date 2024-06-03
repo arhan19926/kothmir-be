@@ -17,7 +17,7 @@ export class Recipes extends Document {
   @Prop()
   imageUrl: string;
 
-  @Prop()
+  @Prop({ type: Date, default: Date.now })
   date: Date;
 
   @Prop()
