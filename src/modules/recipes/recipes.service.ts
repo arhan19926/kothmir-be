@@ -16,9 +16,11 @@ export class RecipesService {
     }
   }
 
-  async processCreateRecipes(payload: CreateRecipeDto) {
+  async processCreateRecipes(payload: CreateRecipeDto[]) {
     try {
-      payload.id = uuidv4();
+      for (const recipe of payload) {
+        recipe.id = uuidv4();
+      }
       const result = await this.databaseService.insertOrUpdateData(payload);
       return result;
     } catch (error) {

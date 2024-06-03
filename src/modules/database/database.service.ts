@@ -14,12 +14,15 @@ export class DatabaseService {
 
   async insertOrUpdateData(data: any) {
     try {
-      const filter = { id: data.id };
+      for (const obj of data) {
+        const filter = { id: obj.id };
+        const update = obj;
+        const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
-      const update = data;
-      const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-
-      await this.recipesModel.findOneAndUpdate(filter, update, options).exec();
+        await this.recipesModel
+          .findOneAndUpdate(filter, update, options)
+          .exec();
+      }
       console.log(`Mongo Upsert complete`);
     } catch (error) {
       console.error('Error inserting data In Mongo:', error.message);
