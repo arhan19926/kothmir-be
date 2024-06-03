@@ -7,8 +7,6 @@ export class CreateRecipeDto {
 
   imageUrl: string;
 
-  date: Date;
-
   veg: boolean;
 
   origin: string;

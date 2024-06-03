@@ -1,6 +1,7 @@
 import { CreateRecipeDto } from '@app/src/modules/recipes/dto/create-recipe.dto';
 import { DatabaseService } from './../database/database.service';
 import { Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class RecipesService {
@@ -17,6 +18,7 @@ export class RecipesService {
 
   async processCreateRecipes(payload: CreateRecipeDto) {
     try {
+      payload.id = uuidv4();
       const result = await this.databaseService.insertOrUpdateData(payload);
       return result;
     } catch (error) {
