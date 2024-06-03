@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Document, HydratedDocument } from 'mongoose';
 
-export type GithubAppsDocument = HydratedDocument<Recipes>;
+export type RecipesDocument = HydratedDocument<Recipes>;
 
 @Schema({ collection: 'recipes' })
 export class Recipes extends Document {
+  @Prop()
+  id: string;
+
   @Prop()
   name: string;
 
