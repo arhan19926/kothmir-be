@@ -19,7 +19,7 @@ export class RecipesController {
   }
 
   @Post('/')
-  async createRecipe(@Body() createRecipeDto: CreateRecipeDto) {
+  async createRecipe(@Body() createRecipeDto: CreateRecipeDto[]) {
     try {
       const result = this.recipesService.processCreateRecipes(createRecipeDto);
       return new ApiResponse(result, null, STATUS_CODES.CREATED);
