@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { DatabaseModule } from './modules/database/database.module';
 
 @Module({
-  imports: [AuthenticationModule],
+  imports: [AuthenticationModule, DatabaseModule],
   controllers: [AppController],
   providers: [
     AppService,
